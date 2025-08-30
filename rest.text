@@ -1,0 +1,16 @@
+get /puppies gets all data
+
+get /puppies/new  gets the newest puppy
+
+get /puppies/:id  gets chosen puppy
+
+
+
+put /puppies/:id
+
+post /puppies/:id  ads the puppy 
+
+
+delete /puppies/:id delets one puppy
+
+
