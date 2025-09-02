@@ -61,6 +61,37 @@ app.get("/collectibles/:item", (req, res) => {
 
 
 
+const shoes = [
+  { name: "Birkenstocks", price: 50, type: "sandal" },
+  { name: "Air Jordans", price: 500, type: "sneaker" },
+  { name: "Air Mahomeses", price: 501, type: "sneaker" },
+  { name: "Utility Boots", price: 20, type: "boot" },
+  { name: "Velcro Sandals", price: 15, type: "sandal" },
+  { name: "Jet Boots", price: 1000, type: "boot" },
+  { name: "Fifty-Inch Heels", price: 175, type: "heel" }
+];
+
+
+app.get("/shoes", (req, res) => {
+  let { "min-price": minPrice, "max-price": maxPrice, type } = req.query;
+
+  let filteredShoes = shoes;
+
+  if (minPrice) {
+    filteredShoes = filteredShoes.filter(shoe => shoe.price >= parseFloat(minPrice));
+  }
+
+  if (maxPrice) {
+    filteredShoes = filteredShoes.filter(shoe => shoe.price <= parseFloat(maxPrice));
+  }
+
+  if (type) {
+    filteredShoes = filteredShoes.filter(shoe => shoe.type.toLowerCase() === type.toLowerCase());
+  }
+  res.json(filteredShoes);
+});
+
+
 
     app.listen(port, () => {
         console.log(`Server running at http://localhost:${port}`);
